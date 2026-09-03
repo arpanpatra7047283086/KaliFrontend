@@ -3,6 +3,8 @@ import { createRoot } from 'react-dom/client'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import PageContent from './components/PageContent'
+import { LoginPage, SignupPage } from './pages/AuthPage'
+import DashboardPage from './pages/DashboardPage'
 import './styles.css'
 
 const pages = {
@@ -19,6 +21,9 @@ function App() {
   useEffect(() => { const onPop = () => setPath(window.location.pathname); window.addEventListener('popstate', onPop); return () => window.removeEventListener('popstate', onPop) }, [])
   useEffect(() => { window.scrollTo({ top: 0, behavior: 'smooth' }); setMenu(false) }, [path])
   const go = (url) => { if (url === path) return; window.history.pushState({}, '', url); setPath(url) }
+  if (path === '/login') return <LoginPage onNavigate={go} />
+  if (path === '/signup') return <SignupPage onNavigate={go} />
+  if (path === '/dashboard') return <DashboardPage onNavigate={go} />
   return <div className="site-shell"><Header pages={pages} path={path} menu={menu} onNavigate={go} onToggleMenu={() => setMenu(!menu)} /><main className="page"><PageContent page={page} onNavigate={go} /></main><Footer onNavigate={go} /></div>
 }
 

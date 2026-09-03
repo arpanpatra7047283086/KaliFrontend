@@ -13,6 +13,10 @@ export default function Header({ pages, path, menu, onNavigate, onToggleMenu }) 
             {item.label}<i aria-hidden="true" />
           </button>
         ))}
+        <span className="auth-links" aria-label="Account navigation">
+          <button className="nav-link auth-link" onClick={() => onNavigate('/login')}>Login<i aria-hidden="true" /></button>
+          <button className="nav-link auth-link auth-link-primary" onClick={() => onNavigate('/signup')}>Sign up<i aria-hidden="true" /></button>
+        </span>
       </nav>
       <button className="menu-button" onClick={onToggleMenu} aria-expanded={menu} aria-label={menu ? 'Close menu' : 'Open menu'}>
         <span /><span />
